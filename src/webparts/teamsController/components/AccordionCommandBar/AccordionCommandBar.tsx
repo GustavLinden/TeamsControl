@@ -18,6 +18,8 @@ const AccordionCommandBar: React.FC<IAccordionCommandBar> = ({
   const addAsMemberIcon: IIconProps = { iconName: 'PeopleAdd' };
   const removeAsOwnerIcon: IIconProps = { iconName: 'FollowUser' };
   const removeUserIcon: IIconProps = { iconName: 'UserRemove' };
+  const placeHolderText =
+    'Want to add a user as a owner or member? Search here!';
 
   const [selectedPerson, setSelectedPerson] = React.useState<string>('');
   const [hasSelectedUser, setHasSelectedUser] = React.useState<boolean>(true);
@@ -41,6 +43,7 @@ const AccordionCommandBar: React.FC<IAccordionCommandBar> = ({
         principalTypes={[PrincipalType.User]}
         personSelectionLimit={1}
         onChange={setSelectedUser}
+        placeholder={placeHolderText}
       />
       <div>
         <ActionButton

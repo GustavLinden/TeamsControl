@@ -30,7 +30,8 @@ const Wrapper: React.FC<IWrapper> = (props: IWrapper): JSX.Element => {
 
   const getData = async () => {
     const response = await TeamOwnerControl.onGetGroupsAndOwners();
-    const filterTeamsProvisioningOptions = response.value.filter((team) => {
+    const groups = [].concat(...response.value);
+    const filterTeamsProvisioningOptions = groups.filter((team) => {
       return team.resourceProvisioningOptions.some((t) => {
         return t === 'Team';
       });

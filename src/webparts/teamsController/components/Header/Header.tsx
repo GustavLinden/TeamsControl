@@ -11,7 +11,7 @@ const Header: React.FC<IHeader> = ({
     return (
       <div className={styles.headerClass}>
         <div className={styles.headerTextColor}>
-          Teams recived. Select a user.
+          Teams loaded, you can now search for a user.
         </div>
       </div>
     );

@@ -23,7 +23,7 @@ export default class GraphCall implements IGraphCall {
       .get();
     this.container.value.push(...nextCall.value);
     if (nextCall['@odata.nextLink']) {
-      this.onConsecutiveGraphCalls(nextCall['@odata.nextLink']);
+      await this.onConsecutiveGraphCalls(nextCall['@odata.nextLink']);
     } else {
       return this.container;
     }

@@ -14,6 +14,7 @@ const ListWrapper: React.FC<IListWrapper> = ({
   selectedPerson,
   context,
 }): JSX.Element => {
+  console.log(groupsAndOwners);
   if (groupsAndOwners.length > 0 && selectedPerson.length > 0) {
     const [{ userPrincipalName, displayName, id }] = selectedPerson;
     const filteredGroups = groupsAndOwners.filter((group) => {
@@ -21,7 +22,6 @@ const ListWrapper: React.FC<IListWrapper> = ({
         return owner.userPrincipalName === userPrincipalName;
       });
     });
-
     const renderedListWithPermissions = filteredGroups.map((group) => (
       <Accordion
         title={group.displayName}
@@ -33,12 +33,9 @@ const ListWrapper: React.FC<IListWrapper> = ({
           className={'itemContent'}
           style={{ backgroundColor: '[theme: themeDarkAlt, default: #932227]' }}
         >
-          <div className={'itemResponse'}>
-            {`This Team has ${group.owners.length} owners. Please hover the info icon for more info`}{' '}
-            <TooltipHost content={tooltipContent}>
-              <Icon iconName="Info" />
-            </TooltipHost>
-          </div>
+          {`This Team has ${group.owners.length} owner(s).`}
+          <OwnerList owners={group.owners} />{' '}
+          <div className={'itemResponse'}> </div>
           <div className={'itemIndex'}>
             <AccordionCommandBar
               context={context}
@@ -49,10 +46,17 @@ const ListWrapper: React.FC<IListWrapper> = ({
             />
           </div>
         </div>
-        <OwnerList owners={group.owners} />
       </Accordion>
     ));
-    return <div>{renderedListWithPermissions}</div>;
+    return (
+      <div>
+        {renderedListWithPermissions.length > 0 ? (
+          renderedListWithPermissions
+        ) : (
+          <div>This user is not a owner of any Teams</div>
+        )}
+      </div>
+    );
   } else {
     return null;
   }

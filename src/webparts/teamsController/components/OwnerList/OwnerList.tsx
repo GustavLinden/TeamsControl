@@ -25,15 +25,16 @@ const OwnerList: React.FC<IOwnerList> = ({ owners }) => {
     setSelectedItem(item);
   };
   return (
-    <Dropdown
-      label="This dropdown shows the current owners"
-      selectedKey={selectedItem ? selectedItem.key : undefined}
-      // eslint-disable-next-line react/jsx-no-bind
-      onChange={onChange}
-      placeholder="Click to see current owners"
-      options={dropdownValues}
-      styles={dropdownStyles}
-    />
+    <div style={{ marginBottom: '5px' }}>
+      <Dropdown
+        selectedKey={selectedItem ? selectedItem.key : undefined}
+        // eslint-disable-next-line react/jsx-no-bind
+        onChange={onChange}
+        placeholder="Click to see current owners"
+        options={dropdownValues}
+        styles={dropdownStyles}
+      />
+    </div>
   );
 };
 

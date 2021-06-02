@@ -22,7 +22,6 @@ const Wrapper: React.FC<IWrapper> = (props: IWrapper): JSX.Element => {
       const userFromGraph = await TeamOwnerControl.onGetUserByPrincipalName(
         userEmail
       );
-      console.log(userFromGraph);
       setSelectedPerson([userFromGraph]);
     } else {
       setSelectedPerson([]);

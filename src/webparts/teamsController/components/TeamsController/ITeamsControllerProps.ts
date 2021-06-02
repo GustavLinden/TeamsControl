@@ -1,5 +1,5 @@
 import { WebPartContext } from '@microsoft/sp-webpart-base';
-import { IGraphCall } from '../../models/IGraphCall';
+import { IGraphCall } from '../../../models/IGraphCall';
 export interface ITeamsControllerProps {
   description: string;
   context: WebPartContext;

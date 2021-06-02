@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ITeamsControllerProps } from './ITeamsControllerProps';
-import Wrapper from '../components/WrapperComponent/Wrapper';
-import TeamOwnerControlContext from '../../Context/TeamOwnerControlContext';
+import Wrapper from '../WrapperComponent/Wrapper';
+import TeamOwnerControlContext from '../../../Context/TeamOwnerControlContext';
 export default class TeamOwnerControl extends React.Component<
   ITeamsControllerProps,
   {}

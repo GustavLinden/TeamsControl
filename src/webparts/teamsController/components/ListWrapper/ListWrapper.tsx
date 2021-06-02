@@ -2,19 +2,18 @@ import * as React from 'react';
 import { IListWrapper } from '../../../models/IListWrapper';
 import { Accordion } from '@pnp/spfx-controls-react/lib/Accordion';
 import AccordionCommandBar from '../AccordionCommandBar/AccordionCommandBar';
-import { TooltipHost, ITooltipHostStyles } from '@fluentui/react/lib/Tooltip';
-import { Icon, IIconProps } from '@fluentui/react';
+import { TooltipHost } from '@fluentui/react/lib/Tooltip';
+import { Icon } from '@fluentui/react';
+import OwnerList from '../OwnerList/OwnerList';
 
 const tooltipContent =
-  'Select a user from the field below. You can then add them as member or owners to the team. You can also remove them as owner from the team';
+  'Select a user from the field below. You can then add them as member or owners to the team. You can also remove them as owner or user from the team';
 
 const ListWrapper: React.FC<IListWrapper> = ({
   groupsAndOwners,
   selectedPerson,
   context,
 }): JSX.Element => {
-  const infoIcon: IIconProps = { iconName: 'Info' };
-
   if (groupsAndOwners.length > 0 && selectedPerson.length > 0) {
     const [{ userPrincipalName, displayName, id }] = selectedPerson;
     const filteredGroups = groupsAndOwners.filter((group) => {
@@ -30,9 +29,12 @@ const ListWrapper: React.FC<IListWrapper> = ({
         key={group.id}
         defaultCollapsed={true}
       >
-        <div className={'itemContent'}>
+        <div
+          className={'itemContent'}
+          style={{ backgroundColor: '[theme: themeDarkAlt, default: #932227]' }}
+        >
           <div className={'itemResponse'}>
-            {`This Team has ${group.owners.length} owners. Pleace hover the info bauble for more info`}{' '}
+            {`This Team has ${group.owners.length} owners. Please hover the info icon for more info`}{' '}
             <TooltipHost content={tooltipContent}>
               <Icon iconName="Info" />
             </TooltipHost>
@@ -47,6 +49,7 @@ const ListWrapper: React.FC<IListWrapper> = ({
             />
           </div>
         </div>
+        <OwnerList owners={group.owners} />
       </Accordion>
     ));
     return <div>{renderedListWithPermissions}</div>;

@@ -59,61 +59,67 @@ export default class GraphCall implements IGraphCall {
     groupId: string,
     userId: string
   ): Promise<Response> => {
-    let deletedOwner = await this.graphClient
-      .api(
-        `https://graph.microsoft.com/v1.0/groups/${groupId}/owners/${userId}/$ref`
-      )
-      .delete();
-    if (deletedOwner === undefined) {
-      alert('User was removed as Owner');
-    } else {
-      alert('There was an error..');
+    try {
+      let deletedOwner = await this.graphClient
+        .api(
+          `https://graph.microsoft.com/v1.0/groups/${groupId}/owners/${userId}/$ref`
+        )
+        .delete();
+      if (deletedOwner === undefined) {
+        alert('User was removed as Owner');
+        return deletedOwner;
+      }
+    } catch (err) {
+      alert(err.message);
     }
-    return deletedOwner;
   };
 
   public onRemoveMember = async (groupId: string, userId: string) => {
-    let removedMember = await this.graphClient
-      .api(`/groups/${groupId}/members/${userId}/$ref`)
-      .delete();
-    if (removedMember === undefined) {
-      alert('User was removed from Team');
-    } else {
-      alert('There was an error..');
+    try {
+      let removedMember = await this.graphClient
+        .api(`/groups/${groupId}/members/${userId}/$ref`)
+        .delete();
+      if (removedMember === undefined) {
+        alert('User was removed from Team');
+        return removedMember;
+      }
+    } catch (err) {
+      alert(err.message);
     }
-    return removedMember;
   };
 
   public onAddGroupMember = async (groupId: string, userId: string) => {
     const directoryObject = {
       '@odata.id': `https://graph.microsoft.com/v1.0/directoryObjects/${userId}`,
     };
-
-    let addedGroupMember = await this.graphClient
-      .api(`/groups/${groupId}/members/$ref`)
-      .post(directoryObject);
-    if (addedGroupMember === undefined) {
-      alert('User added to Team');
-    } else {
-      alert('There was an error..');
+    try {
+      let addedGroupMember = await this.graphClient
+        .api(`/groups/${groupId}/members/$ref`)
+        .post(directoryObject);
+      if (addedGroupMember === undefined) {
+        alert('User added to Team');
+      }
+      return addedGroupMember;
+    } catch (err) {
+      alert(err.message);
     }
-    return addedGroupMember;
   };
 
   public onAddGroupOwner = async (userId: string, groupId: string) => {
     const directoryObject = {
       '@odata.id': `https://graph.microsoft.com/v1.0/users/${userId}`,
     };
+    try {
+      let addedOwner = await this.graphClient
+        .api(`/groups/${groupId}/owners/$ref`)
+        .post(directoryObject);
 
-    let addedOwner = await this.graphClient
-      .api(`/groups/${groupId}/owners/$ref`)
-      .post(directoryObject);
-
-    if (addedOwner === undefined) {
-      alert('User added as Owner');
-    } else {
-      alert('There was an error..');
+      if (addedOwner === undefined) {
+        alert('User added as Owner');
+        return addedOwner;
+      }
+    } catch (err) {
+      alert(err.message);
     }
-    return addedOwner;
   };
 }

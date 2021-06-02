@@ -4,5 +4,6 @@ export interface IValue {
   displayName: string;
   owners: Array<{
     userPrincipalName: string;
+    displayName: string;
   }>;
 }

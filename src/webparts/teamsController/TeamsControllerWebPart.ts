@@ -9,8 +9,8 @@ import { WebPartContext } from '@microsoft/sp-webpart-base';
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 
 import * as strings from 'TeamsControllerWebPartStrings';
-import TeamsController from './components/TeamsController';
-import { ITeamsControllerProps } from './components/ITeamsControllerProps';
+import TeamsController from './components/TeamsController/TeamsController';
+import { ITeamsControllerProps } from './components/TeamsController/ITeamsControllerProps';
 import GraphCall from '../Graph/GraphCall';
 export interface ITeamsControllerWebPartProps {
   description: string;

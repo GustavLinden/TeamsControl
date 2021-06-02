@@ -1,4 +1,3 @@
-import { Button } from '@fluentui/react';
 import { PrimaryButton } from '@microsoft/office-ui-fabric-react-bundle';
 import * as React from 'react';
 import { IHeader } from '../../../models/IHeader';
@@ -11,7 +10,9 @@ const Header: React.FC<IHeader> = ({
   if (numberOfGroups.length > 0) {
     return (
       <div className={styles.headerClass}>
-        <div>Teams recived! Now you can search for a person!</div>
+        <div className={styles.headerTextColor}>
+          Teams recived. Select a user.
+        </div>
       </div>
     );
   } else {
@@ -20,7 +21,9 @@ const Header: React.FC<IHeader> = ({
         <div>
           {' '}
           Click button to get teams.{' '}
-          <PrimaryButton onClick={runGetData}>Get Teams</PrimaryButton>
+          <PrimaryButton className={styles['prim-btn']} onClick={runGetData}>
+            Get Teams
+          </PrimaryButton>
         </div>
       </div>
     );

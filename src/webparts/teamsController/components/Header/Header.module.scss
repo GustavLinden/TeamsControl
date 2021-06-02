@@ -1,8 +1,15 @@
 .headerClass {
   margin-bottom: 3px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: '[theme: themePrimary, default: #0078d7]';
+  background-color: '[theme: themeDarkAlt, default: #932227]';
+  color: rgb(255, 255, 255);
   padding: 5px;
   font-size: larger;
   font-weight: 500;
+}
+.primBtn {
+  background-color: '[theme: themeLight, default: #e3afb2]';
+}
+.headerTextColor {
+  color: rgb(255, 255, 255);
 }
